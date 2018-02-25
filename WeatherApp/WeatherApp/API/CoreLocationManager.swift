@@ -27,15 +27,14 @@ class CoreLocationManager : NSObject, CLLocationManagerDelegate {
     override init() {
         
         super.init()
-        updateLocation()
-    }
-    
-    func updateLocation() {
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
-        
+        updateLocation()
+    }
+    
+    func updateLocation() {
         let status = CLLocationManager.authorizationStatus()
         if status == .authorizedWhenInUse  || status == .authorizedAlways {
             if CLLocationManager.locationServicesEnabled() {
@@ -74,7 +73,11 @@ class CoreLocationManager : NSObject, CLLocationManagerDelegate {
                         print("Open url : \(success)")
                     })
                 })
+                let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: {(alert) in
+                    
+                })
                 alert.addAction(alertAction)
+                alert.addAction(cancelAction)
                 UIApplication.shared.windows[0].rootViewController?.present(alert, animated: true, completion: nil)
             }
         }
