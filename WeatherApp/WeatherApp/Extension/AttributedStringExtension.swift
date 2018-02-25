@@ -28,7 +28,7 @@ extension NSMutableAttributedString {
             .font: UIFont(name: "Arvo", size: 14.0)!,
             .foregroundColor: UIColor(white: 74.0 / 255.0, alpha: 1.0)
             ])
-        attributedString.addAttribute(.font, value: UIFont(name: "Arvo", size: 24.0)!, range: NSRange(location: 0, length: 2))
+        attributedString.addAttribute(.font, value: UIFont(name: "Arvo", size: 24.0)!, range: NSRange(location: 0, length: percentage.count))
         
         return attributedString
     }

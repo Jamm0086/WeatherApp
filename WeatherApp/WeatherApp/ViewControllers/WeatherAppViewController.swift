@@ -18,9 +18,13 @@ class WeatherAppViewController: UIViewController {
     
     class func checkInternetConnection(){
         if RestAPIClient.isConnectedToInternet == false {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let noInternetVC = storyboard.instantiateViewController(withIdentifier: "NoInternetConnectionViewController") as! NoInternetConnectionViewController
-            UIApplication.shared.windows[0].rootViewController?.present(noInternetVC, animated: true, completion: nil)
+            
+            DispatchQueue.main.async {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let noInternetVC = storyboard.instantiateViewController(withIdentifier: "NoInternetConnectionViewController") as! NoInternetConnectionViewController
+                UIApplication.shared.windows[0].rootViewController?.present(noInternetVC, animated: true, completion: nil)
+            }
+            
         }
     }
 }
