@@ -8,10 +8,4 @@ target 'WeatherApp' do
 
   # Pods for WeatherApp
     pod 'Alamofire', '~> 4.5'
-
-  target 'WeatherAppTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
 end

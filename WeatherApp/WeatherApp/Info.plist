@@ -58,6 +58,8 @@
 		<string>Arvo-BoldItalic.ttf</string>
 		<string>Arvo-Bold.ttf</string>
 	</array>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Your location information will used by this app</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

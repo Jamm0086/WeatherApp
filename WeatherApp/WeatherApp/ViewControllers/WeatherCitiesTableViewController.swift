@@ -105,7 +105,6 @@ class WeatherCitiesTableViewController: WeatherAppTableViewController, WeatherCi
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }
-
     
     // MARK: - Prepare for Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
