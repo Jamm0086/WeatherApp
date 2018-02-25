@@ -24,7 +24,7 @@ class WeatherCityDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         if let city = weatherCity {
-            setNavigationBarDetailTextStyle(title: city.name)
+            navigationBarTextStyle(title: city.name)
             prepareView()
         }
     }
@@ -36,21 +36,19 @@ class WeatherCityDetailViewController: UIViewController {
             bigTempLabel.text = city.convertyKelvinToCelsiusDegreeString(kelvin: city.temp)
             weatherDescriptionLabel.text = city.weatherDescription!
             
-            let formatter = NSMutableAttributedString()
-            
             let minTemp = city.convertyKelvinToCelsiusString(kelvin: city.tempMin)
-            minTempLabel.attributedText = formatter.detailDegreesFormatter(degrees: minTemp, title: "MIN")
+            minTempLabel.attributedText = NSMutableAttributedString.detailDegreesFormatter(degrees: minTemp, title: "MIN")
             let medtemp = city.convertyKelvinToCelsiusString(kelvin: city.temp)
-            medTempLabel.attributedText = formatter.detailDegreesFormatter(degrees: medtemp, title: "MED")
+            medTempLabel.attributedText = NSMutableAttributedString.detailDegreesFormatter(degrees: medtemp, title: "MED")
             let maxTemp = city.convertyKelvinToCelsiusString(kelvin: city.tempMax)
-            maxTempLabel.attributedText = formatter.detailDegreesFormatter(degrees: maxTemp, title: "MAX")
+            maxTempLabel.attributedText = NSMutableAttributedString.detailDegreesFormatter(degrees: maxTemp, title: "MAX")
             
             let hum = String(format:"%.0f", city.humidity)
-            humLabel.attributedText = formatter.detailPercentageFormatter(percentage: hum, title: "Hum")
+            humLabel.attributedText = NSMutableAttributedString.detailPercentageFormatter(percentage: hum, title: "Hum")
             let atm = city.convertHectoPascaltoATMString(hpa: city.pressure)
-            atmLabel.attributedText = formatter.detailFormatter(number: atm, title: "Atm")
+            atmLabel.attributedText = NSMutableAttributedString.detailFormatter(number: atm, title: "Atm")
             let wind = String(format:"%.1f", city.windSpeed)
-            windLabel.attributedText = formatter.detailFormatter(number: wind, title: "km/m")
+            windLabel.attributedText = NSMutableAttributedString.detailFormatter(number: wind, title: "km/m")
             
         }
     }

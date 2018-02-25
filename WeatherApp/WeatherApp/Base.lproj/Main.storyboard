@@ -368,7 +368,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Weather" id="dw8-85-lvB">
-                        <barButtonItem key="backBarButtonItem" title=" " id="hin-Xy-TTi"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="Fq7-L5-yVX"/>
                     </navigationItem>
                     <connections>
                         <segue destination="LkO-Hw-2BD" kind="show" identifier="showDetailSegue" id="uUQ-Lb-XPA"/>

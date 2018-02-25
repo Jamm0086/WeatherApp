@@ -10,7 +10,7 @@ import UIKit
 
 extension NSMutableAttributedString {
     
-    func detailDegreesFormatter(degrees: String, title: String) -> NSMutableAttributedString {
+    class func detailDegreesFormatter(degrees: String, title: String) -> NSMutableAttributedString {
         let text = "\(degrees)º\n\(title)"
         let attributedString = NSMutableAttributedString(string: text, attributes: [
             .font: UIFont(name: "Arvo", size: 14.0)!,
@@ -22,7 +22,7 @@ extension NSMutableAttributedString {
         return attributedString
     }
     
-    func detailPercentageFormatter(percentage: String, title: String) -> NSMutableAttributedString {
+    class func detailPercentageFormatter(percentage: String, title: String) -> NSMutableAttributedString {
         let text = "\(percentage)%\n\(title)"
         let attributedString = NSMutableAttributedString(string: text, attributes: [
             .font: UIFont(name: "Arvo", size: 14.0)!,
@@ -33,10 +33,10 @@ extension NSMutableAttributedString {
         return attributedString
     }
     
-    func detailFormatter(number: String, title: String)-> NSMutableAttributedString {
+    class func detailFormatter(number: String, title: String)-> NSMutableAttributedString {
         let text = "\(number)\n\(title)"
         let attributedString = NSMutableAttributedString(string: text, attributes: [
-            .font: UIFont(name: "Arvo", size: 13.0)!,
+            .font: UIFont(name: "Arvo", size: 14.0)!,
             .foregroundColor: UIColor(white: 74.0 / 255.0, alpha: 1.0)
             ])
         attributedString.addAttribute(.font, value: UIFont(name: "Arvo", size: 24.0)!, range: NSRange(location: 0, length: number.count))
@@ -44,4 +44,11 @@ extension NSMutableAttributedString {
         return attributedString
     }
     
+   class func tableViewHeaderFormatter(text: String) -> NSMutableAttributedString {
+        let attributedString = NSMutableAttributedString(string: text, attributes: [
+            .font: UIFont(name: "Arvo", size: 14.0)!,
+            .foregroundColor: UIColor(white: 74.0 / 255.0, alpha: 1.0)
+            ])
+        return attributedString
+    }
 }

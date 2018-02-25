@@ -14,7 +14,7 @@ class WeatherCitiesTableViewController: WeatherAppTableViewController, WeatherCi
     var refresher: UIRefreshControl!
     
     override func viewDidLoad() {
-        self.setNavigationBarTextStyle()
+        navigationBarTextStyle(title: "Weather")
         list.delegate = self
         prepareRefresher()
         loadCities()
@@ -84,13 +84,28 @@ class WeatherCitiesTableViewController: WeatherAppTableViewController, WeatherCi
         performSegue(withIdentifier: "showDetailSegue", sender: weatherCity)
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MM-yyyy h:mm a"
-        let text = "Last update: \(formatter.string(from: date))"
-        return text
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.lightGray
+        
+        let headerLabel = UILabel(frame: CGRect(x: 29, y: 5, width:
+            tableView.bounds.size.width, height: tableView.bounds.size.height))
+        if list.citiesList != nil {
+            let date = Date()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd-MM-yyyy h:mm:ss a"
+            let text = "Last update: \(formatter.string(from: date))"
+            headerLabel.attributedText = NSMutableAttributedString.tableViewHeaderFormatter(text: text)
+        }
+        headerLabel.sizeToFit()
+        headerView.addSubview(headerLabel)
+        return headerView
     }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+
     
     // MARK: - Prepare for Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

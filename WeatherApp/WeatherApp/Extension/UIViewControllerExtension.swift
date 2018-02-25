@@ -10,22 +10,12 @@ import UIKit
 
 extension UIViewController {
     
-    func setNavigationBarTextStyle() {
+    func navigationBarTextStyle(title text: String) {
         if let navController = self.navigationController {
             let navigationTitleFont = UIFont(name: "Arvo", size: 22)!
+            self.title = text
             navController.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: navigationTitleFont, NSAttributedStringKey.foregroundColor: UIColor.waterBlue]
         }
     }
-    
-    func setNavigationBarDetailTextStyle(title text: String) {
-        if let navController = self.navigationController {
-            let navigationTitleFont = UIFont(name: "Arvo", size: 22)!
-            navController.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: navigationTitleFont, NSAttributedStringKey.foregroundColor: UIColor.detailTitleColor]
-            self.title = text
-            if let backItem = navController.navigationBar.topItem {
-                backItem.title = " "
-            }
-        }
-    }
-    
 }
+
