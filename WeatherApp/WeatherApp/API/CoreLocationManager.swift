@@ -31,13 +31,16 @@ class CoreLocationManager : NSObject, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
-        updateLocation()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+        }
     }
     
     func updateLocation() {
         let status = CLLocationManager.authorizationStatus()
         if status == .authorizedWhenInUse  || status == .authorizedAlways {
             if CLLocationManager.locationServicesEnabled() {
+                locationManager.stopUpdatingLocation()
                 locationManager.startUpdatingLocation()
             }
         } else {
@@ -55,14 +58,22 @@ class CoreLocationManager : NSObject, CLLocationManagerDelegate {
         if (delegate != nil) {
             delegate.updateLocationCompleted()
         }
-        locationManager.stopUpdatingLocation()
+       
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        requestAuthorization(status: status)
+       
+        if let firstValidation = UserDefaults.standard.object(forKey: "FirstValidation") as? Bool {
+            if firstValidation {
+                requestAuthorization(status: status)
+            }
+        } else {
+            UserDefaults.standard.set(true, forKey: "FirstValidation")
+        }
+        
     }
     
-    func requestAuthorization(status: CLAuthorizationStatus){
+    func requestAuthorization(status: CLAuthorizationStatus) {
         if status == .notDetermined || status == .denied {
             
             DispatchQueue.main.async {
